@@ -1,30 +1,29 @@
-var c = document.getElementById("Canvas");
-var ctx = c.getContext("2d");
-ctx.fillStyle = "#ff0000";
-
-function setupCanvas(canvas) {
+function setupCanvas(canvas,img) {
     // Get the device pixel ratio, falling back to 1.
     var dpr = window.devicePixelRatio || 1;
     // Get the size of the canvas in CSS pixels.
-    var rect = canvas.getBoundingClientRect();
+    var rect = img.getBoundingClientRect();
     // Give the canvas pixel dimensions of their CSS
     // size * the device pixel ratio.
+    
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
+    /*canvas.width = img.width * dpr;
+    canvas.height = img.height * dpr;*/
+    
     var ctx = canvas.getContext('2d');
     // Scale all drawing operations by the dpr, so you
     // don't have to worry about the difference.
     ctx.scale(dpr, dpr);
     return ctx;
-  }
+}
 
-var ctx = setupCanvas(document.querySelector('#Canvas'));
+/*var ctx = setupCanvas(document.querySelector('#Canvas'));
 ctx.lineWidth = 7;
 ctx.lineCap = "round"
 ctx.beginPath();
-var lineLength = 77;
+var lineLength = 77;*/
 
-var image,canvas;
 //read image
 function readimg(){
 
@@ -32,18 +31,25 @@ function readimg(){
     var canvas = document.getElementById('img_output');
     canvas.width = img.width;
     canvas.height = img.height;
+
+    var ctx = setupCanvas(document.querySelector('#Canvas'),img);
+    //var ctx = document.getElementById("Canvas");
     ctx.width = img.width;
     ctx.height = img.height;
+    ctx.clearRect(0,0,img.width,img.height);
     //alert(img);
     canvas.getContext("2d").drawImage(img, 0, 0, img.width, img.height);
 
-    setInterval(function(){drawLine(canvas);},50);
-    setInterval(function(){drawLine(canvas);},50);
-    setInterval(function(){drawLine(canvas);},50);
+    setInterval(function(){drawLine(ctx,canvas);},50);
+    setInterval(function(){drawLine(ctx,canvas);},50);
+    setInterval(function(){drawLine(ctx,canvas);},50);
 }
 
-function drawLine(canvas)
+function drawLine(ctx,canvas)
 {
+    ctx.lineWidth = 7;
+    ctx.lineCap = "round"
+    var lineLength = 77;
     var beginX = Math.random()*ctx.width;
     var beginY = Math.random()*ctx.height;
     var radio = RandomRadio();

@@ -3,25 +3,21 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Hello World!</title>
+  <title>Scatter</title>
 </head>
 
 <body>
-  <h1>Hello World!</h1>
-  We are using Node.js
-  <script>document.write(process.versions.node)</script>,
-  Chromium
-  <script>document.write(process.versions.chrome)</script>,
-  and Electron
-  <script>document.write(process.versions.electron)</script>.
+  <h1>Welcome to Scatter</h1>
 
-  <input id="img_input" type="file" accept="image/*"/>
-  <img id="image" onload="load()" src="https://drscdn.500px.org/photo/198664175/q%3D80_m%3D2000/v2?webp=true&sig=e721fcdf6e60655f32ce60345b04ea9c32dc9c8e5278c19d641ca50a31418719">
-  <canvas id="Canvas" style="width:2000px;height:2000px;background-color:white;"></canvas>
+  <input id="img_input" type="file" onchange="newImage(this)" accept="image/*"/>
+  <input type="button" value="hide image" onclick="document.getElementById('image').style.display='none';">
+  <input type="button" value="show image" onclick="document.getElementById('image').style.display='block';">
+  <img id="image" onload="load()"/>
+  <canvas id="Canvas" ></canvas>
   <p hidden><canvas id="img_output"></canvas></p>
 
   <script>
-    // You can also require other files to run in this process
+    // You can also require other files to run in this process 
     require('./renderer.js')
     require('./Canvas.js')
     function load(){
@@ -30,6 +26,7 @@
     }
   </script>
   <script type="text/javascript" src="Canvas.js" ></script>
+  <script type="text/javascript" src="readImage.js" ></script>
 
 </body>
 
