@@ -5,15 +5,23 @@
   <meta charset="UTF-8">
   <title>Scatter</title>
 </head>
-
+<link href="index.css" rel="stylesheet" type="text/css"/>
 <body>
   <h1>Welcome to Scatter</h1>
 
+  
   <input id="img_input" type="file" onchange="newImage(this)" accept="image/*"/>
-  <input type="button" value="hide image" onclick="document.getElementById('image').style.display='none';">
-  <input type="button" value="show image" onclick="document.getElementById('image').style.display='block';">
-  <img id="image" onload="load()"/>
-  <canvas id="Canvas" ></canvas>
+    <label for="img_input">选择图片</label>
+  <input type="button" id="hide" class="button" value="hide image" onclick="document.getElementById('image').style.display='none';">
+  <input type="button" id="show" class="button" value="show image" onclick="document.getElementById('image').style.display='';">
+    <!--<label for="hide">隐</label>
+    <label for="show">显</label>-->
+  <div class="img-container">
+    <img class="image" id="image" onload="load()" />
+  </div>
+  <div class="img-container">
+    <canvas id="Canvas" class="image"></canvas>
+  </div>
   <p hidden><canvas id="img_output"></canvas></p>
 
   <script>
