@@ -17,6 +17,8 @@
     <!--<label for="hide">隐</label>
     <label for="show">显</label>-->
 
+  <button id="save" onclick="saveImage()">保存</button>
+
   <div class = "setWidth">
     <input type="range" name="width" min="1" max="30" onchange="aboutWidth('set',this.value)">
     调整宽度
@@ -43,7 +45,7 @@
     require('./renderer.js')
     require('./Canvas.js')
     function load(){
-      //alert('done');
+      //document.getElementById('image').style.display='none';
       readimg();
     }
   </script>

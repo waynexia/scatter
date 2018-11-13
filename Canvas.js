@@ -15,6 +15,7 @@ function setupCanvas(canvas, img) {
     // Scale all drawing operations by the dpr, so you
     // don't have to worry about the difference.
     ctx.scale(dpr, dpr);
+
     return ctx;
 }
 
@@ -33,6 +34,9 @@ function readimg() {
     ctx.width = img.width;
     ctx.height = img.height;
     ctx.clearRect(0, 0, img.width, img.height);
+    //put white background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0,10000,10000);
     //alert(img);
     canvas.getContext("2d").drawImage(img, 0, 0, img.width, img.height);
 
@@ -111,4 +115,14 @@ function RandomRadio() {
     return Math.random() * 2 * Math.PI;
 }
 
+function saveImage(){
+    var base64img = ctx.canvas.toDataURL();
+    var oA = document.createElement('a');
+    oA.href = base64img;
+    date = new Date()
+    oA.download = 'scatter' + date.getTime()
 
+    var event = document.createEvent('MouseEvent');
+    event.initMouseEvent('click',true,false,window,0,0,0,0,0,false,false,false,false,0,null);
+    oA.dispatchEvent(event);
+}
