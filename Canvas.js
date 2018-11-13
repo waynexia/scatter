@@ -18,21 +18,17 @@ function setupCanvas(canvas, img) {
     return ctx;
 }
 
-/*var ctx = setupCanvas(document.querySelector('#Canvas'));
-ctx.lineWidth = 7;
-ctx.lineCap = "round"
-ctx.beginPath();
-var lineLength = 77;*/
+var ctx,canvas;
 
 //read image
 function readimg() {
 
     var img = document.getElementById('image');
-    var canvas = document.getElementById('img_output');
+    canvas = document.getElementById('img_output');
     canvas.width = img.width;
     canvas.height = img.height;
 
-    var ctx = setupCanvas(document.querySelector('#Canvas'), img);
+    ctx = setupCanvas(document.querySelector('#Canvas'), img);
     //var ctx = document.getElementById("Canvas");
     ctx.width = img.width;
     ctx.height = img.height;
@@ -40,9 +36,10 @@ function readimg() {
     //alert(img);
     canvas.getContext("2d").drawImage(img, 0, 0, img.width, img.height);
 
+    setSpeed(3,ctx,canvas);
+    /*setInterval(function () { drawLine(ctx, canvas); }, 50);
     setInterval(function () { drawLine(ctx, canvas); }, 50);
-    setInterval(function () { drawLine(ctx, canvas); }, 50);
-    setInterval(function () { drawLine(ctx, canvas); }, 50);
+    setInterval(function () { drawLine(ctx, canvas); }, 50);*/
 }
 
 function aboutWidth(mode, value) {
@@ -65,8 +62,21 @@ function aboutLength(mode, value) {
     }
 }
 
+
+function setSpeed(value) {
+    if(this.intervals == undefined) this.intervals = [];
+    intervals.forEach(clearInterval);
+    var i = setInterval(function() {
+        drawLine(ctx,canvas);
+    }, 300/value);
+    for(cnt=0;cnt<3;++cnt)
+    {
+        intervals.push(i);
+    }
+        
+}
+
 function drawLine(ctx, canvas) {
-    //ctx.lineWidth = document.getElementsByName('width').range;
     ctx.lineWidth = aboutWidth("get", 0)
     ctx.lineCap = "round"
     var lineLength = aboutLength('get', 0);
