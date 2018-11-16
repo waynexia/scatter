@@ -2,7 +2,7 @@ h1{
     text-align: center;
 }
 
-#img_input{
+.button{
     width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -11,7 +11,7 @@ h1{
 	z-index: -1;
 }
 
-#img_input + label{
+.button + label{
     font-size: 1.25em;
     font-weight: 700;
     color: white;
@@ -24,8 +24,8 @@ h1{
     /*width: 2.5em;*/
 }
 
-#img_input:focus + label,
-#img_input + label:hover {
+.button:focus + label,
+.button + label:hover {
     background-color: rgb(14, 230, 219);
 }
 
@@ -45,3 +45,6 @@ h1{
     max-height:100%;
 }
 
+#setting{
+    text-align: center;
+}
