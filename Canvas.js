@@ -48,7 +48,8 @@ function readimg() {
 
 function aboutWidth(mode, value) {
     if (mode == "set") {
-        this.width = value
+        base = Math.min(canvas.height,canvas.width);
+        this.width = (value/100)*base/50
     }
     else if (mode == "get") {
         if (this.width == undefined) width = 3
@@ -58,7 +59,8 @@ function aboutWidth(mode, value) {
 
 function aboutLength(mode, value) {
     if (mode == "set") {
-        this.length = value
+        base = Math.min(canvas.height,canvas.width);
+        this.length = (value/100)*base/10*1.5
     }
     else if (mode == "get") {
         if (this.length == undefined) this.length = 30
@@ -72,8 +74,8 @@ function setSpeed(value) {
     intervals.forEach(clearInterval);
     var i = setInterval(function() {
         drawLine(ctx,canvas);
-    }, 300/value);
-    for(cnt=0;cnt<3;++cnt)
+    }, 200/value);
+    for(cnt=0;cnt<6;++cnt)
     {
         intervals.push(i);
     }
@@ -84,8 +86,8 @@ function drawLine(ctx, canvas) {
     ctx.lineWidth = aboutWidth("get", 0)
     ctx.lineCap = "round"
     var lineLength = aboutLength('get', 0);
-    var beginX = Math.random() * ctx.width;
-    var beginY = Math.random() * ctx.height;
+    var beginX = Math.random() * ctx.canvas.width;
+    var beginY = Math.random() * ctx.canvas.height;
     var radio = RandomRadio();
     var endX = beginX + Math.sin(radio) * lineLength;
     var endY = beginY + Math.cos(radio) * lineLength;
@@ -125,4 +127,19 @@ function saveImage(){
     var event = document.createEvent('MouseEvent');
     event.initMouseEvent('click',true,false,window,0,0,0,0,0,false,false,false,false,0,null);
     oA.dispatchEvent(event);
+}
+
+function resize(){
+    container = document.getElementById('image');
+    console.log(container.width);
+    console.log(container.height);
+    /*canvasContainer = document.getElementById("canvasContainer");
+    canvasContainer.width = container.width+"px";
+    canvasContainer.height = container.height+"px";*/
+    ctx.canvas.width = container.width;
+    ctx.canvas.height = container.height;
+    canvas.width = container.width
+    canvas.height = container.height;
+    var img = document.getElementById('image');
+    canvas.getContext("2d").drawImage(img, 0, 0, img.width, img.height);
 }
