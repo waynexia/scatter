@@ -1,0 +1,19 @@
+{
+  "name": "scatter",
+  "version": "0.0.1",
+  "description": "A artistical picture re-painter",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/waynexia/scatter",
+  "keywords": [
+    "painter",
+    "demo"
+  ],
+  "author": "Waynest",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^3.0.4"
+  }
+}
