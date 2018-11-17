@@ -3,11 +3,11 @@ const {app, BrowserWindow,Menu} = require('electron')
 let mainWindow
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 1500, height: 900})
+  mainWindow = new BrowserWindow({width: 1500, height: 900,frame:false})
 
   mainWindow.loadFile('index.html')
 
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', function () {
     mainWindow = null

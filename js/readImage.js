@@ -1,4 +1,3 @@
-
 function newImage(image){
     var file = image.files[0];
 
